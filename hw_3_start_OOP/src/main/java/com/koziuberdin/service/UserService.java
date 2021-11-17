@@ -1,12 +1,13 @@
-package Userservice;
+package com.koziuberdin.service;
 
 import com.koziuberdin.dao.UserDao;
 import com.koziuberdin.model.User;
 
-public class Userservice {
+public class UserService {
+
     private UserDao userDao;
 
-    public Userservice(UserDao userDao){
+    public UserService(UserDao userDao){
         this.userDao = userDao;
     }
 
@@ -29,7 +30,4 @@ public class Userservice {
     public void delete(int id){
        userDao.delete(id);
     }
-
-
-
 }

@@ -1,6 +1,6 @@
 package com.koziuberdin;
 
-import Controller.Controller;
+import com.koziuberdin.сontroller.Controller;
 
 public class Main {
     public static void main(String[] args) {

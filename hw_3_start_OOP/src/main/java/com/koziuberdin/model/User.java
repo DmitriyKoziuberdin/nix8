@@ -3,12 +3,8 @@ package com.koziuberdin.model;
 public class User {
 
     private int id;
-
     private String login;
-
     private int age;
-
-
 
     public String getLogin() {
         return login;

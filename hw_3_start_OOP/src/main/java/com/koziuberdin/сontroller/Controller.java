@@ -1,35 +1,33 @@
-package Controller;
+package com.koziuberdin.сontroller;
 
-import Userservice.Userservice;
+import com.koziuberdin.service.UserService;
 import com.koziuberdin.dao.UserDao;
 import com.koziuberdin.model.User;
-import java.io.BufferedReader;
-import java.io.IOException;
-import java.io.InputStreamReader;
+
 import java.util.Scanner;
 
-
 public class Controller {
-    private final Userservice service;
+
+    private final UserService service;
     private final Scanner in;
 
-    public Controller(){
-        service = new Userservice(new UserDao());
+    public Controller() {
+        service = new UserService(new UserDao());
         in = new Scanner(System.in);
     }
 
-    public void run(){
+    public void run() {
         try {
             do {
                 System.out.println("""
-                Choose what do you want to do:\s
-                1-Create
-                2-Find by ID
-                3-Find all
-                4-Update
-                5-Delete""");
+                        Choose what do you want to do:\s
+                        1-Create
+                        2-Find by ID
+                        3-Find all
+                        4-Update
+                        5-Delete""");
 
-                switch (Integer.parseInt(in.nextLine())){
+                switch (Integer.parseInt(in.nextLine())) {
                     case 1 -> create();
                     case 2 -> findById();
                     case 3 -> findAll();
@@ -41,16 +39,12 @@ public class Controller {
                 System.out.println("Do you want to continue working with users? 1-yes, else-no");
             } while (Integer.parseInt(in.nextLine()) == 1);
 
-        } catch (NumberFormatException e){
+        } catch (NumberFormatException e) {
             System.out.println(e.getMessage());
-        }  catch (RuntimeException e) {
+        } catch (RuntimeException e) {
             System.out.print(e.getMessage());
         }
-
     }
-
-
-
 
     private void create() {
         Scanner in = new Scanner(System.in);
@@ -84,11 +78,9 @@ public class Controller {
 
     private void findAll() {
         User[] users = service.findAll();
-
-        for (int i = 0; i < users.length && users[i] != null ; i++) {
+        for (int i = 0; i < users.length && users[i] != null; i++) {
             System.out.print(users[i]);
         }
-
     }
 
     private void update() {
@@ -97,7 +89,7 @@ public class Controller {
 
         int id;
         id = in.nextInt();
-        while (service.findById(id) == null){
+        while (service.findById(id) == null) {
             System.out.print("Enter ID again, user with such ID not found!");
             id = Integer.parseInt(in.nextLine());
         }
@@ -115,8 +107,6 @@ public class Controller {
         user.setAge(age);
         System.out.print("Age = " + age);
         service.update(id, user);
-
-
     }
 
     private void delete() {
@@ -125,6 +115,4 @@ public class Controller {
         id = in.nextInt();
         service.delete(id);
     }
-
-
 }
